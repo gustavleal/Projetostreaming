@@ -1,0 +1,678 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap')
+
+overlay()
+  position: absolute
+  top: 0
+  left: 0
+  inset: 0
+
+cleanScroll()
+  scrollbar-width: none
+  overflow: -moz-scrollbars-none
+
+  &::-webkit-scrollbar
+    width: 0 !important
+    display: none
+
+ellipsis()
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
+imdb()
+  display: flex
+  justify-content: space-between
+  align-items: center
+  width: 50px
+  height: 17px
+  margin-top: 4px
+  font-family: 'Roboto Condensed', sans-serif
+  font-size: 11px
+  color: var(--brand-grey)
+
+logo()
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 62.5%
+  height: 100%
+  border: 1px solid var(--brand-grey)
+  border-radius: 3px
+
+movie-title()
+  margin-top: 8px
+  font-size: 12px
+  font-weight: 700
+  ellipsis()
+
+tags()
+  margin-top: 7px
+  font-size: 10px
+  color: var(--brand-grey)
+
+*
+  box-sizing: border-box
+
+a
+  text-decoration: none
+
+button
+  background: none
+  border: 0
+  cursor: pointer
+
+svg
+  pointer-events: none
+
+body
+  --toned-white: #A9A9A9 // background cel //
+  --brand-c: #3250fa // bombando //
+  --light-brand-c: #B4BFFD
+  --brand-grey: #1C1C1C // letras //
+  --layer-zero-opacity: 1
+  --layer-one-opacity: 0
+  --layer-two-opacity: 0
+  display: flex
+  height: 100vh
+  background: black
+  font-family: sans-serif
+
+  #phone
+    display: flex
+    width: 270px
+    height: 546px
+    margin: auto
+    position: relative
+    transform: scale(1.1)
+    overflow: hidden
+
+    &::after
+      content: ''
+      width: 100%
+      height: 100%
+      overlay()
+      background-image: url('https://res.cloudinary.com/dugd5fjqo/image/upload/v1607102532/iphone-frame_c4jo6n.png')
+      background-size: 101%
+      background-position: 50% 75%
+      background-repeat: no-repeat
+      pointer-events: none
+      z-index: 2
+
+    #screen
+      display: grid
+      grid-template-columns: 100%
+      grid-template-rows: 12.5% 77.5%
+      grid-template-areas: 'header'
+      'main'
+      width: 90%
+      height: 94%
+      margin: auto
+      position: relative
+      background: var(--toned-white)
+      border-radius: 30px
+      overflow: hidden
+
+      #first-layer
+        width: 98%
+        min-height: 100%
+        position: absolute
+        left: 1%
+        pointer-events: none
+        opacity: var(--layer-one-opacity)
+        overflow-x: hidden
+        overflow-y: scroll
+        cleanScroll()
+
+        .big-poster
+          width: 100%
+          height: 67.5%
+          overlay()
+          background-size: cover
+          background-position: center
+          border-radius: 15px
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)
+
+        .close-card
+          width: 25px
+          height: 25px
+          position: fixed
+          top: 25px
+          right: 25px
+          border-radius: 50%
+          z-index: 1
+
+          svg
+            width: 100%
+            height: 100%
+            overlay()
+            opacity: 0
+
+        .big-movie-info
+          width: 100%
+          height: 57px
+          position: absolute
+          top: calc(67.5% + 14px)
+          left: 5%
+
+          .imdb
+            imdb()
+
+            .logo
+              logo()
+
+            .grade
+              font-size: 12px
+
+        .movie-title
+          width: 82.5%
+          movie-title()
+
+        .tags
+          tags()
+
+        .info-last
+          width: 100%
+          margin-top: 7px
+          position: absolute
+          color: var(--brand-grey)
+          font-size: 10px
+          opacity: 0
+
+      #bottom-screen
+        display: flex
+        flex-flow: column nowrap
+        align-items: center
+        width: 100%
+        height: auto
+        position: absolute
+        top: 90%
+        left: 0
+
+      #mid-nav
+        display: flex
+        width: 90%
+        height: 35px
+        position: relative
+        background: white
+        border-radius: 7px
+
+        a
+          display: flex
+          justify-content: center
+          align-items: center
+          width: 50%
+          height: 100%
+          margin: auto
+          text-decoration: none
+          color: black
+          font-size: 11px
+          font-weight: 700
+
+        #nav-layer
+          width: 47.5%
+          height: 95%
+          position: absolute
+          top: 2.5%
+          left: 1.25%
+          background: white
+          border-radius: 7px
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)
+          pointer-events: none
+
+        svg
+          width: 101%
+          height: 102%
+          position: absolute
+          top: -1%
+          left: -0.5%
+
+      #dual-wrapper
+        width: 100%
+        height: auto
+        position: relative
+
+        .dual-screen
+          display: grid
+          width: 100%
+          height: auto
+          padding-bottom: 75px
+          position: absolute
+
+          h4
+            margin-left: 5%
+            font-size: 13px
+            font-weight: 800
+
+          .reel
+            display: flex
+            width: 100%
+            min-height: 47.5px
+            margin-top: 15px
+            overflow-x: auto
+            overflow-y: hidden
+            cleanScroll()
+
+          &.left
+            display: grid
+            left: 0
+            grid-template-columns: 100%
+            grid-auto-rows: min-content
+            grid-gap: 25px
+
+            #movie-copy
+              margin-top: 30px
+
+              p
+                width: 90%
+                margin-top: 15px
+                margin-left: 5%
+                color: rgba(0, 0, 0, 0.85)
+                font-size: 10px
+                font-weight: 400
+                line-height: 135%
+
+            .reel
+              .item
+                display: flex
+                min-width: 55%
+                height: 100%
+                position: relative
+                background: white
+                margin-left: 10px
+                border-radius: 10px
+
+            #cast-wrap
+              display: flex
+              flex-flow: column nowrap
+              justify-content: space-between
+
+              .reel.cast
+                .item
+                  .shot
+                    width: 35%
+                    height: 100%
+                    background-size: cover
+                    background-position: center
+                    border-radius: 10px
+
+                  .details
+                    display: flex
+                    flex-wrap: wrap
+                    align-items: center
+                    align-content: center
+                    width: 62.5%
+                    height: 100%
+                    padding-left: 8px
+
+                    *
+                      width: 100%
+                      margin: auto
+                      text-align: left
+                      ellipsis()
+
+                    h5
+                      font-size: 9px
+                      font-weight: 600
+                      margin-top: 4px
+                      margin-bottom: 2px
+
+                    p
+                      margin-top: 2px
+                      font-size: 9px
+                      color: var(--brand-grey)
+
+            #trailer-wrap
+              display: flex
+              flex-flow: column nowrap
+              justify-content: space-between
+
+              .reel.trailer
+                height: 100px
+
+                .item
+                  cursor: pointer
+
+                  .video-thumb
+                    width: 100%
+                    height: 100%
+                    position: relative
+                    background-color: black
+                    background-size: cover
+                    background-position: center
+                    border-radius: 10px
+
+                    &::after
+                      content: ''
+                      width: 35px
+                      height: 35px
+                      position: absolute
+                      top: 50%
+                      left: 50%
+                      background-image: url('https://res.cloudinary.com/dugd5fjqo/image/upload/v1609863950/play-black_fhzx1h.svg')
+                      background-size: 50%
+                      background-position: 55% 55%
+                      background-repeat: no-repeat
+                      background-color: var(--toned-white)
+                      border-radius: 50%
+                      transform: translate(-50%, -50%)
+                      transition: opacity 0.1s linear
+
+                    &.open::after
+                      opacity: 0
+
+          &.right
+            left: 100%
+            grid-template-columns: 100%
+            grid-auto-rows: min-content
+            grid-gap: 25px
+
+            #date-picker
+              margin-top: 25px
+
+      &.two
+        position: fixed
+        opacity: 0.3
+
+      header
+        grid-area: 'header'
+        opacity: var(--layer-zero-opacity)
+        transition: opacity 0.2s linear
+
+        *
+          display: flex
+
+        #top-icons
+          justify-content: space-between
+          width: 100%
+          height: 27.5%
+          padding: 0 4.5%
+
+          .topbar
+            display: flex
+            justify-content: space-evenly
+            align-items: flex-end
+            width: 21%
+            height: 100%
+
+            &.left
+              #clock
+                font-size: 10px
+
+            &.right
+              div
+                width: 12px
+                height: 12px
+                position: relative
+
+                svg
+                  width: 100%
+                  height: 100%
+                  overlay()
+
+                &:nth-of-type(1)
+                  svg
+                    transform: scale(2)
+
+        #search
+          width: 100%
+          height: 72.5%
+          margin-top: 5px
+
+          #searchbar
+            width: 90%
+            height: 62.5%
+            margin: auto
+            position: relative
+            background: white
+            border-radius: 5px
+            transition: box-shadow 0.1s linear
+
+            &:hover
+              box-shadow: 0 0 0 1px var(--light-brand-c)
+
+            input
+              width: 85%
+              height: 100%
+              position: relative
+              border: 0
+              text-indent: 14px
+              font-size: 12px
+              line-height: 100%
+              outline: none
+              border-top-left-radius: 5px
+              border-bottom-left-radius: 5px
+
+              &::placeholder
+                font-size: 14px
+                color: var(--brand-grey)
+                opacity: 1
+                // background: green
+
+              &:hover+#search-icon, &:focus+#search-icon
+                svg
+                  #glass
+                    fill: #3250fa
+
+            #search-icon
+              display: flex
+              width: 15%
+              height: 100%
+              position: absolute
+              right: 0
+              cursor: pointer
+
+              svg
+                width: 95%
+                height: 95%
+                margin: auto
+
+                #glass
+                  transition: fill 0.1s linear
+
+          datalist
+            position: absolute
+            visibility: hidden
+
+      main
+        grid-area: 'main'
+        display: flex
+        flex-flow: column nowrap
+        justify-content: space-evenly
+        overflow: hidden
+
+        h3
+          margin-left: 13px
+          font-size: 16px
+          font-weight: 700
+          opacity: var(--layer-zero-opacity)
+          transition: opacity 0.2s linear
+
+        #card-gallery
+          width: 100%
+          height: 82.5%
+          position: relative
+          overflow-x: scroll
+          overflow-y: hidden
+          cleanScroll()
+
+          #spacer
+            width: 6%
+            height: 100%
+            position: absolute
+            left: 462.5%
+            background: none
+
+          .movie-card
+            display: flex
+            flex-flow: column nowrap
+            justify-content: space-between
+            width: 75%
+            height: 100%
+            position: absolute
+            overflow: hidden
+
+            a
+              width: 95%
+              height: 80%
+              position: absolute
+
+            .poster
+              width: 95%
+              height: 80%
+              border-radius: 12px
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+              background-size: cover
+              background-position: center
+
+            .movie-info
+              width: 100%
+              height: 17.5%
+              margin-top: 10px
+
+              .imdb
+                imdb()
+
+                .logo
+                  logo()
+
+                .grade
+                  font-size: 12px
+
+              .movie-title
+                width: 75%
+                movie-title()
+
+              .tags
+                tags()
+
+            &.one
+              left: 8%
+
+            &.two
+              left: 82.5%
+
+            &.three
+              left: 157.5%
+
+            &.four
+              left: 232.5%
+
+            &.five
+              left: 307.5%
+
+            &.six
+              left: 382.5%
+
+      #fixed-layer
+        width: 89%
+        height: 94%
+        position: fixed
+        top: 3%
+        left: 5.5%
+        opacity: var(--layer-two-opacity)
+        pointer-events: none
+        overflow: hidden
+        z-index: 1
+
+        .video-thumb
+          &::after
+            content: ''
+            width: 100%
+            height: 100%
+            overlay()
+            background: black
+            border-radius: 25px
+            opacity: 0
+            transition: opacity 0.1s linear
+            pointer-events: none
+
+          &.active::after
+            opacity: 1
+
+          video
+            width: 100%
+            height: 100%
+            background: black
+            object-fit: cover
+
+            &:focus
+              outline: 0
+
+            &::-webkit-media-controls-fullscreen-button
+              display: none
+
+        .back-arrow
+          width: 40px
+          height: 40px
+          position: absolute
+          top: 12px
+          left: 15px
+          opacity: 0
+          z-index: 1
+
+      footer
+        width: 87.5%
+        background: white
+        height: 10%
+        position: fixed
+        top: 87%
+        left: 50%
+        transform: translate(-50%)
+        z-index: 1
+        border-top-left-radius: 16px
+        border-top-right-radius: 16px
+
+        nav
+          width: 100%
+          height: 100%
+
+          ul
+            display: flex
+            justify-content: space-evenly
+            align-items: center
+            width: 100%
+            height: 100%
+
+            li
+              display: flex
+              width: 22px
+              height: 22px
+              transform: translatey(-40%)
+
+              &:nth-of-type(1)
+                width: 30%
+
+                a
+                  justify-content: space-between
+
+                  &.active
+                    h4
+                      color: var(--brand-c)
+
+                  svg
+                    width: 30%
+
+                  h4
+                    width: 67.5%
+                    font-size: 11px
+                    color: #627d8b
+                    transition: color 0.1s linear
+                    pointer-events: none
+
+              a
+                display: flex
+                align-items: center
+                width: 100%
+                height: 100%
+
+                &.active
+                  svg
+                    .icon
+                      fill: var(--brand-c)
+
+                svg
+                  width: 100%
+                  height: 100%
+
+                  .icon
+                    transition: fill 0.1s linear
