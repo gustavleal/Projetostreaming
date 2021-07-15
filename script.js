@@ -1,7 +1,7 @@
 console.clear();
 gsap.registerPlugin(Flip, ScrollToPlugin, ScrollTrigger);
 
-//Collection of relevant data arrays.
+//Coleção de matrizes de dados relevantes.
 const movieData = {
   pictures: [
     "https://res.cloudinary.com/dugd5fjqo/image/upload/v1607347772/johnwick-3_xfbrny.jpg",
@@ -292,7 +292,7 @@ const movieData = {
   ]
 };
 
-//Clock object to handle display of time (European time, not much customization here).
+//Objeto de relógio para controlar a exibição do tempo. //
 const dynamicClock = {
   wrap: document.querySelector("#clock"),
   parseTime: function () {
@@ -319,7 +319,7 @@ const dynamicClock = {
   }
 };
 
-//Navigation object to handle 'higher' footer navigation.
+//Objeto de navegação para lidar com a navegação "superior" do rodapé.//
 const footerNav = {
   block: document.querySelector("footer"),
   wrap: document.querySelector("footer nav ul"),
@@ -332,7 +332,7 @@ const footerNav = {
     });
   },
   init: function () {
-    //Default active item is the first.
+    // O item ativo padrão é o primeiro.//
     this.activateLink(0);
     document.addEventListener("click", (e) => {
       if (e.target.matches("footer nav ul li a")) {
@@ -356,7 +356,7 @@ const footerNav = {
   }
 };
 
-//Main UI controller object to handle dynamic scrolling, animation to detailed view and data injection.
+//Objeto controlador principal da IU para lidar com rolagem dinâmica, animação para visualização detalhada e injeção de dados.
 const dynamicScroll = {
   cssBody: document.body.style,
   fixedLayer: document.querySelector("#fixed-layer"),
@@ -377,7 +377,7 @@ const dynamicScroll = {
   activeIndex: null,
   trailerIndex: null,
   labels: ["start", "two", "three", "four", "five", "end"],
-  //Create and pause the timeline for movie cards animation.
+  //Crie e pause a linha do tempo para a animação dos cartões de filme.//
   scrollTl: gsap
     .timeline({
       defaults: {
@@ -385,7 +385,7 @@ const dynamicScroll = {
       }
     })
     .pause(),
-  //Shorthand function to scroll to a specific movie-card.
+  //Função abreviada para rolar para um cartão de filme específico. //
   scrollFunc: function (pos, off, dur) {
     gsap.to("#card-gallery", {
       scrollTo: {
@@ -396,24 +396,24 @@ const dynamicScroll = {
       duration: dur
     });
   },
-  //Shorthand function to fade out irrelevant elements during fade transitions. Uses css custom properties.
+  //Função abreviada para esmaecer elementos irrelevantes durante as transições de esmaecimento. Usa propriedades customizadas css. //
   fadeAll: function (prop, val) {
     this.cssBody.setProperty(prop, val);
   },
-  //Shorthand function to scroll to the selected movie with the search input.
+  //Função abreviada para rolar para o filme selecionado com a entrada de pesquisa. //
   inputNav: function (tar) {
     let target = tar;
-    //Index of active movie card.
+    // Índice do cartão de filme ativo. //
     let activeIndex = this.cards.indexOf(
       document.querySelector(".movie-card.active")
     );
-    //Index of the selected movie card
+    //Índice do cartão de filme selecionado //
     let movieIndex = movieData.titles.indexOf(target);
     let diff;
     if (movieIndex > activeIndex) {
-      //Check index difference in forwards direction (right scrolling).
+      //Verifique a diferença de índice na direção para frente (rolagem para a direita).//
       diff = movieIndex - activeIndex;
-      //Adapt scrolling speed and offset to navigate between one or several movie cards.
+      //Adapte a velocidade de rolagem e deslocamento para navegar entre um ou vários cartões de filme.//
       switch (diff) {
         case 1:
           movieIndex === this.cards.length - 1
@@ -442,9 +442,9 @@ const dynamicScroll = {
           break;
       }
     } else if (movieIndex < activeIndex) {
-      //Check index difference in backwards direction (left scrolling).
+      // Verifique a diferença de índice na direção para trás (rolagem para a esquerda).//
       diff = activeIndex - movieIndex;
-      //Adapt scrolling speed and offset to navigate between one or several movie cards.
+      // Adapte a velocidade de rolagem e deslocamento para navegar entre um ou vários cartões de filme.
       switch (diff) {
         case 1:
           activeIndex === this.cards.length - 1
@@ -474,7 +474,7 @@ const dynamicScroll = {
       }
     }
   },
-  //Add non-click event listeners (and styling) specific to the input search (focus, enter key) to call the input shorthand function to scroll to the selected movie.
+  // Adicione ouvintes de eventos não clicáveis (e estilos) específicos para a pesquisa de entrada (foco, tecla enter) para chamar a função abreviada de entrada para rolar até o filme selecionado.//
   inputFunc: function () {
     this.searchField.addEventListener("focus", () => {
       gsap.set("#searchbar", { boxShadow: "0 0 0 1px var(--brand-c)" });
@@ -490,7 +490,7 @@ const dynamicScroll = {
       }
     });
   },
-  //Shorthand function to populate the scroll timeline.
+  // Função abreviada para preencher a linha do tempo de rolagem. //
   passCardTween: function (el, el2, el3, el4, label, duration) {
     this.scrollTl
       .addLabel(label)
@@ -509,7 +509,7 @@ const dynamicScroll = {
       .to(el3, { opacity: 0, duration: duration }, `>-${duration}`)
       .to(el4, { opacity: 1, duration: duration }, `>-${duration}`);
   },
-  //Shorthand function to navigate to a tab/section in the middle navigation (showtimes / details).
+  // Função abreviada para navegar para uma guia / seção na navegação intermediária (horários de exibição / detalhes).//
   dualTween: function (tl, off, off2, off3) {
     tl.to("#nav-layer", { x: off })
       .to(
@@ -523,7 +523,7 @@ const dynamicScroll = {
       )
       .to(".dual-screen", { x: off3 }, ">-.3");
   },
-  //Function to navigate to chosen tab in the middle navigation.
+  // Função para navegar até a guia escolhida na navegação intermediária.//
   toggleMidNav: function (pos) {
     let tl = gsap.timeline({
       defaults: {
@@ -542,7 +542,7 @@ const dynamicScroll = {
     } controls></video>`;
     el.insertAdjacentHTML("beforeend", trailer);
   },
-  //Function to populate elements visible after selecting an active movie card. Uses the index of the active card to select relevant data to display.
+  // Função para preencher os elementos visíveis após selecionar um cartão de filme ativo. Usa o índice do cartão ativo para selecionar os dados relevantes a serem exibidos.//
   fetchInfo: function (pos) {
     const setInnerText = (el, arr, pos) => {
       el.innerText = arr[pos];
