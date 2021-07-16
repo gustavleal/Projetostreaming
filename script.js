@@ -1,15 +1,15 @@
 console.clear();
 gsap.registerPlugin(Flip, ScrollToPlugin, ScrollTrigger);
 
-//Coleção de matrizes de dados relevantes.
+//Coleção de matrizes de dados relevantes. AQUI MUDAMOS A FOTO DO FILME 😊
 const movieData = {
   pictures: [
-    "https://res.cloudinary.com/dugd5fjqo/image/upload/v1607347772/johnwick-3_xfbrny.jpg",
-    "https://i.redd.it/7ftviduqdla21.jpg",
-    "https://i.redd.it/2brgvjmaewu31.jpg",
-    "https://preview.redd.it/s9biogtbp9x31.jpg?auto=webp&s=d5c81f12d940c18ae578709fabff1163474697cc",
-    "https://i.redd.it/i49dvm44py121.jpg",
-    "https://i.redd.it/dqcvbm8rlfi31.png"
+    "https://tse3.mm.bing.net/th?id=OIP.xrI-pXkLeC_lbx1kq6GA1wHaLH&pid=Api&P=0&w=300&h=300",
+    "https://k62.kn3.net/taringa/2/7/8/4/A/5/aming94/550x788_352.jpg",
+    "https://i.pinimg.com/736x/d4/c2/23/d4c223e8b4c34494adabdc1525c15a5f.jpg",
+    "https://i.pinimg.com/originals/ba/9c/a4/ba9ca4fd647bc330eefc98acd8923b48.jpg",
+    "https://i0.wp.com/www.soudesergipe.com.br/wp-content/uploads/2019/03/assistir_filme_capita_marvel_soudesergipe.jpg?fit=600%2C900&ssl=1",
+    "https://image.tmdb.org/t/p/w342/lFx2i2pg1BoaD7grcpGDyHM1eML.jpg"
   ],
   gradeArr: ["7.4", "7.5", "8.4", "8.5", "6.9", "6.6"],
   titles: [
@@ -239,9 +239,10 @@ const movieData = {
     ]
   ],
   trailPics: [
+    //FOTO DO VÍDEO //
     [
-      "https://media.newyorker.com/photos/5cdf1ad7339acf8247bfc768/4:3/w_1888,h_1416,c_limit/Richard-JohnWick.jpg",
-      "https://www.wienerzeitung.at/_em_daten/_cache/image/1xRDqOdlZgE4T2ymGcPwVCCsKl0e8SfsO4Lztc7R02FG89eZbOT5KHPjkcf-Pg7D3US2Vbu_wWGD_Mrgiw86pPbz6A8QXcHHor/191025-1309-jw3-d61-19326-r-a4.jpg"
+      "https://assets1.ignimgs.com/thumbs/userUploaded/2019/5/17/john-wick-w2w-best-fight-scenesblogroll-1558137598581.jpg?fit=bounds&width=1280",
+      "https://tse4.mm.bing.net/th?id=OIP.QjEf4ddrO41xLfo_rWSHAwHaEo&pid=Api&P=0&w=257&h=162"
     ],
     [
       "https://static01.nyt.com/images/2019/07/08/arts/08spider-spoilers-1/merlin_157155882_1b06740b-940a-4a63-99e1-31122006d72a-superJumbo.jpg",
@@ -256,7 +257,7 @@ const movieData = {
       "https://www.clydefitchreport.com/wp-content/uploads/2019/10/IMG_5530-e1573333927499.jpg"
     ],
     [
-      "https://m.media-amazon.com/images/M/MV5BODlhOGM4MGMtYjBjMi00MWQ2LTk4OWUtYzQ2YzE0NWZkODlkXkEyXkFqcGdeQW1yb3NzZXI@._V1_CR251,0,1419,798_AL_UY268_CR84,0,477,268_AL_.jpg",
+      "http://fr.web.img6.acsta.net/newsv7/19/07/09/14/42/4652194.png",
       "https://www.indiewire.com/wp-content/uploads/2018/12/CaptainMarvel_06.png"
     ],
     [
@@ -312,14 +313,14 @@ const dynamicClock = {
   },
   init: function () {
     this.parseTime();
-    //Parse time every second to update.
+ //Analise o tempo a cada segundo para atualizar.
     setInterval(() => {
       this.parseTime();
     }, 1000);
   }
 };
 
-//Objeto de navegação para lidar com a navegação "superior" do rodapé.//
+ //Objeto de navegação para lidar com a navegação "superior" do rodapé.//
 const footerNav = {
   block: document.querySelector("footer"),
   wrap: document.querySelector("footer nav ul"),
@@ -332,7 +333,7 @@ const footerNav = {
     });
   },
   init: function () {
-    // O item ativo padrão é o primeiro.//
+  // O item ativo padrão é o primeiro.//
     this.activateLink(0);
     document.addEventListener("click", (e) => {
       if (e.target.matches("footer nav ul li a")) {
@@ -403,17 +404,17 @@ const dynamicScroll = {
   //Função abreviada para rolar para o filme selecionado com a entrada de pesquisa. //
   inputNav: function (tar) {
     let target = tar;
-    // Índice do cartão de filme ativo. //
+  // Índice do cartão de filme ativo. //
     let activeIndex = this.cards.indexOf(
       document.querySelector(".movie-card.active")
     );
-    //Índice do cartão de filme selecionado //
+  //Índice do cartão de filme selecionado //
     let movieIndex = movieData.titles.indexOf(target);
     let diff;
     if (movieIndex > activeIndex) {
-      //Verifique a diferença de índice na direção para frente (rolagem para a direita).//
+   //Verifique a diferença de índice na direção para frente (rolagem para a direita).//
       diff = movieIndex - activeIndex;
-      //Adapte a velocidade de rolagem e deslocamento para navegar entre um ou vários cartões de filme.//
+   //Adapte a velocidade de rolagem e deslocamento para navegar entre um ou vários cartões de filme.//
       switch (diff) {
         case 1:
           movieIndex === this.cards.length - 1
@@ -442,9 +443,9 @@ const dynamicScroll = {
           break;
       }
     } else if (movieIndex < activeIndex) {
-      // Verifique a diferença de índice na direção para trás (rolagem para a esquerda).//
+   // Verifique a diferença de índice na direção para trás (rolagem para a esquerda).//
       diff = activeIndex - movieIndex;
-      // Adapte a velocidade de rolagem e deslocamento para navegar entre um ou vários cartões de filme.
+   // Adapte a velocidade de rolagem e deslocamento para navegar entre um ou vários cartões de filme.
       switch (diff) {
         case 1:
           activeIndex === this.cards.length - 1
@@ -474,7 +475,7 @@ const dynamicScroll = {
       }
     }
   },
-  // Adicione ouvintes de eventos não clicáveis (e estilos) específicos para a pesquisa de entrada (foco, tecla enter) para chamar a função abreviada de entrada para rolar até o filme selecionado.//
+   // Adicione ouvintes de eventos não clicáveis (e estilos) específicos para a pesquisa de entrada (foco, tecla enter) para chamar a função abreviada de entrada para rolar até o filme selecionado.//
   inputFunc: function () {
     this.searchField.addEventListener("focus", () => {
       gsap.set("#searchbar", { boxShadow: "0 0 0 1px var(--brand-c)" });
@@ -490,7 +491,7 @@ const dynamicScroll = {
       }
     });
   },
-  // Função abreviada para preencher a linha do tempo de rolagem. //
+   // Função abreviada para preencher a linha do tempo de rolagem. //
   passCardTween: function (el, el2, el3, el4, label, duration) {
     this.scrollTl
       .addLabel(label)
@@ -509,7 +510,7 @@ const dynamicScroll = {
       .to(el3, { opacity: 0, duration: duration }, `>-${duration}`)
       .to(el4, { opacity: 1, duration: duration }, `>-${duration}`);
   },
-  // Função abreviada para navegar para uma guia / seção na navegação intermediária (horários de exibição / detalhes).//
+   // Função abreviada para navegar para uma guia / seção na navegação intermediária (horários de exibição / detalhes).
   dualTween: function (tl, off, off2, off3) {
     tl.to("#nav-layer", { x: off })
       .to(
@@ -523,7 +524,7 @@ const dynamicScroll = {
       )
       .to(".dual-screen", { x: off3 }, ">-.3");
   },
-  // Função para navegar até a guia escolhida na navegação intermediária.//
+   // Função para navegar até a guia escolhida na navegação intermediária.
   toggleMidNav: function (pos) {
     let tl = gsap.timeline({
       defaults: {
@@ -542,7 +543,7 @@ const dynamicScroll = {
     } controls></video>`;
     el.insertAdjacentHTML("beforeend", trailer);
   },
-  // Função para preencher os elementos visíveis após selecionar um cartão de filme ativo. Usa o índice do cartão ativo para selecionar os dados relevantes a serem exibidos.//
+   //Função para preencher os elementos visíveis após selecionar um cartão de filme ativo. Usa o índice do cartão ativo para selecionar os dados relevantes a serem exibidos.
   fetchInfo: function (pos) {
     const setInnerText = (el, arr, pos) => {
       el.innerText = arr[pos];
@@ -577,7 +578,7 @@ const dynamicScroll = {
       item.querySelector("p").innerText =
         movieData.castArr[this.activeIndex][i].role;
 
-      //Resize and position actor thumbnails in the cast section.
+    //Redimensione e posicione as miniaturas dos atores na seção de elenco.
       switch (this.activeIndex) {
         case 0:
           i === 2
@@ -668,27 +669,27 @@ const dynamicScroll = {
   fadeEl: function (el, val, dur) {
     gsap.to(el, { opacity: val, duration: dur, ease: "none" });
   },
-  //Function to execute shared element transition to the vertical section with movie details.
+  //Função para executar a transição do elemento compartilhado para a seção vertical com detalhes do filme.
   flipCard: function (el, el2, pos) {
-    //Parse data with the active index and display relevant information inside the hidden elements.
+    //Analisa os dados com o índice ativo e exibe informações relevantes dentro dos elementos ocultos.
     this.fetchInfo(pos);
 
-    //Set the hidden big movie picture right on top of the active movie card.
+  //Defina a imagem do filme grande oculto bem em cima do cartão de filme ativo.
     Flip.fit(".big-poster", el, {
       absolute: true,
       props: "borderRadius,boxShadow"
     });
-    //Set the hidden primary info right on top of the equivalent element from the active card.
+    //Defina as informações primárias ocultas bem em cima do elemento equivalente do cartão ativo.
     Flip.fit(".big-movie-info", el2, { absolute: true });
 
-    //Hide original elements and show entering elements to see the transition to the next view (big).
+   //Oculte os elementos originais e mostre os elementos de entrada para ver a transição para a próxima vista (grande).
     this.cards.forEach((card, i) => {
       i === pos ? this.switchOp(card, 0) : this.fadeEl(card, 0, 0.2);
     });
     this.fadeAll("--layer-zero-opacity", "0");
     this.fadeAll("--layer-one-opacity", "1");
 
-    //Get states from both hidden elements.
+   //Obtenha estados de ambos os elementos ocultos.
     let bigState = Flip.getState(".big-poster", {
       props: "borderRadius,boxShadow",
       absolute: true
@@ -696,24 +697,24 @@ const dynamicScroll = {
     let infoState = Flip.getState(".big-movie-info", {
       absolute: true
     });
-    //Set the hidden elements back to their original state(bigger).
+    //Defina os elementos ocultos de volta ao seu estado original (maior).
     gsap.set(".big-poster", { clearProps: true });
     gsap.set(".big-movie-info", { clearProps: true });
-    //Show previously hidden big picture and set relevant background image with the active index.
+    //Mostra o quadro anteriormente oculto e define a imagem de fundo relevante com o índice ativo.
     gsap.set(".big-poster", {
       backgroundImage: `url(${movieData.pictures[pos]})`
     });
-    //Animate now visible elements from 'small' state to 'big' state.
+    //Anime os elementos agora visíveis do estado 'pequeno' ao estado 'grande'.
     Flip.from(bigState, {
       duration: 0.4,
       ease: "power3.in",
       absolute: true,
       onComplete: () => {
-        //Enable vertical scrolling.
-        //gsap.set("#screen", { overflowY: "scroll" });
-        //Enable pointer.
+    //Habilita a rolagem vertical.
+    //gsap.set("#screen ", {overflowY:" scroll "});
+    //Habilita o ponteiro.
         gsap.set("#screen > #first-layer", { pointerEvents: "all" });
-        //Show close button to go back to the gallery view.
+        //Mostra o botão Fechar para voltar à visualização da galeria.
         this.fadeEl(".close-card svg", 1, 0.1);
       }
     });
@@ -723,13 +724,13 @@ const dynamicScroll = {
       absolute: true,
       ease: "power3.in"
     });
-    //Reveal last line of primary info.
+    //Revele a última linha de informações primárias.
     setTimeout(() => {
       this.fadeEl(".info-last", 1, 0.1);
     }, 0.2);
   },
   flipBack: function () {
-    //Reverse order of operations to apply the FLIP technique to go back to the first view.
+    //Inverta a ordem das operações para aplicar a técnica FLIP para voltar à primeira vista.
     this.fadeEl(".close-card svg", 0, 0.1);
 
     let picState = Flip.getState(".big-poster", {
@@ -753,7 +754,7 @@ const dynamicScroll = {
         ease: "power3.in",
         absolute: true,
         onComplete: () => {
-          //Hide previous (big) elements (poster,info and bottom content) and show original elements.
+      //Oculte os elementos anteriores (grandes) (pôster, informações e conteúdo inferior) e mostre os elementos originais.
           this.cards.forEach((card, i) => {
             i === this.activeIndex
               ? this.switchOp(card, 1)
@@ -763,9 +764,9 @@ const dynamicScroll = {
           this.switchOp(".big-movie-info", 0);
           this.fadeAll("--layer-zero-opacity", "1");
           this.fadeAll("--layer-one-opacity", "0");
-          //Disable pointer events.
+      //Desative eventos de ponteiro.
           gsap.set("#screen > #first-layer", { pointerEvents: "none" });
-          //Reset scroll position of cast and trailer galleries.
+      //Redefina a posição de rolagem das galerias de elenco e trailer.
           gsap.to(".dual-screen.left .reel", 0, {
             scrollTo: {
               x: 0
@@ -777,13 +778,13 @@ const dynamicScroll = {
         duration: 0.4,
         ease: "power3.in"
       });
-      //Hide last line of primary info.
+      //Oculte a última linha de informações primárias.
       setTimeout(() => {
         this.fadeEl(".info-last", 0, 0.1);
       }, 200);
     }, 100);
   },
-  //Expand trailer thumbnail to full-screen loaded video on click
+     //Expanda a miniatura do trailer para um vídeo carregado em tela inteira com um clique.
   expandTrailer: function (el, pos) {
     let thumbState = Flip.getState(el, {
       absolute: true,
@@ -846,7 +847,7 @@ const dynamicScroll = {
     }, 100);
   },
   closeTrailer: function (el, pos) {
-    //Reverse and adjust FLIP animation back to first thumbnail view.
+    //Inverta e ajuste a animação FLIP de volta para a primeira visualização em miniatura.
     const clip = this.fixedLayer.querySelector(".video-thumb");
     const vid = this.fixedLayer.querySelector("video");
     let target = this.trailerItems[pos];
@@ -904,17 +905,17 @@ const dynamicScroll = {
       }, 150);
     }, 200);
   },
-  //Handle all click interactions.
+    //Lidar com todas as interações de clique.
   handleClicks: function () {
     document.addEventListener(
       "click",
       (e) => {
-        //Handles click of search input button.
+    //Lida com o clique do botão de entrada de pesquisa.
         if (e.target.matches("#search-icon")) {
           let target = this.searchField.value;
           this.inputNav(target);
         }
-        //Handles click of close button (detailed view).
+    //Lida com o clique do botão Fechar (visualização detalhada).
         else if (e.target.matches(".close-card")) {
           if (document.querySelector("#first-layer").scrollTop !== 0) {
             gsap.to("#first-layer", 0.2, {
@@ -929,22 +930,22 @@ const dynamicScroll = {
             dynamicScroll.flipBack();
           }
         }
-        //Handles click on middle navigation tab buttons.
+      //As alças clicam nos botões da guia de navegação do meio.
         else if (e.target.matches("#mid-nav a")) {
           let index = this.midNavLinks.indexOf(e.target);
           this.toggleMidNav(index);
         }
-        //Handles click on movie cards (links).
+      //Lida com clique em cartões de filme (links).
         else if (e.target.matches(".movie-card a")) {
           //Disable hash redirection.
           e.preventDefault();
-          //Get index of active movie card inside its respective array.
+          //Obtenha o índice da placa de filme ativa dentro de sua respectiva matriz.
           let activeIndex = this.cards.indexOf(
             document.querySelector(".movie-card.active")
           );
-          //Get index of selected movie card.
+      //Obtenha o índice do cartão de filme selecionado.
           let currentIndex = this.links.indexOf(e.target);
-          //Handle forward navigation between movie cards (only one card every time).
+      //Controle a navegação direta entre os cartões de filme (apenas um cartão de cada vez).
           if (currentIndex > activeIndex) {
             currentIndex === this.cards.length - 1
               ? this.scrollFunc(this.cards[currentIndex], 0, 0.16)
@@ -952,7 +953,7 @@ const dynamicScroll = {
           } else if (currentIndex < activeIndex) {
             this.scrollFunc(this.cards[currentIndex], 18, 0.2);
           }
-          //Handle click on active movie card.
+       //Segure o clique no cartão de filme ativo.
           else if (currentIndex === activeIndex) {
             this.activeIndex = activeIndex;
             this.flipCard(
@@ -979,20 +980,20 @@ const dynamicScroll = {
       });
     };
 
-    //Populate datalist for the search input suggestion with movie titles from our data.
+    //Preencha o datalist para a sugestão de entrada de pesquisa com títulos de filmes de nossos dados.
     movieData.titles.forEach((title, i) => {
       let option = `<option value="${title}">${title}</option>`;
       this.dataList.insertAdjacentHTML("beforeend", option);
     });
 
-    //Scale up the first movie card and hide all primary infos but the one of the active first card.
+    //Aumente a escala do primeiro card de filme e oculte todas as informações primárias, exceto aquela do primeiro card ativo.
 
     gsap.set(".movie-card", { scale: 0.85 });
     gsap.set(".movie-card.one", { scale: 1 });
     gsap.set(".movie-info", { opacity: 0 });
     gsap.set(".movie-card.one .movie-info", { opacity: 1 });
 
-    //Set primary data elements (pictures, text)
+    //Defina os elementos de dados primários (imagens, texto)
 
     document.querySelectorAll(".poster").forEach((item, i) => {
       gsap.set(item, { backgroundImage: `url(${movieData.pictures[i]})` });
@@ -1008,7 +1009,7 @@ const dynamicScroll = {
       rotate: 180
     });
 
-    //Populate scroll timeline wih the movie cards animation.
+    //Preencher a linha do tempo de rolagem com a animação dos cartões de filme.
 
     for (let i = 0; i < this.cards.length - 1; i++) {
       if (i !== this.cards.length - 2) {
@@ -1051,7 +1052,7 @@ const dynamicScroll = {
       }
     }
 
-    //Create trigger to link the scroll timeline directly to the scrollbar (scrub).
+    //Crie um gatilho para vincular a linha do tempo de rolagem diretamente à barra de rolagem (esfregar).
     const trigger = ScrollTrigger.create({
       horizontal: true,
       scroller: this.scroller,
@@ -1064,7 +1065,7 @@ const dynamicScroll = {
         duration: 0.2
       }
     });
-    //Handles synchronisation of scrolling animation on resize.
+    //Lida com a sincronização da animação de rolagem no redimensionamento.
     let progress = 0;
     ScrollTrigger.addEventListener(
       "refreshInit",
@@ -1074,7 +1075,7 @@ const dynamicScroll = {
       trigger.scroll(progress * ScrollTrigger.maxScroll(this.scroller, true));
     });
 
-    //Create a trigger for every movie card to handle active state.
+    //Crie um gatilho para cada cartão de filme para controlar o estado ativo.
     this.cards.forEach((card, i) => {
       let index = this.cards.indexOf(card);
       let st = ScrollTrigger.create({
@@ -1086,16 +1087,16 @@ const dynamicScroll = {
         toggleClass: "active"
       });
     });
-    //Set middle tab navigation to the second option (details).
+    //Defina a navegação da guia do meio para a segunda opção (detalhes).
     gsap.set("#nav-layer", { x: "105%" });
 
-    //Call event handler functions.
+    //Chame funções de manipulador de eventos.
     this.inputFunc();
     this.handleClicks();
   }
 };
 
-//Initiate clock, bottom navigation and scroll animation.
+//Inicie o relógio, a navegação inferior e a animação de rolagem.
 dynamicClock.init();
 footerNav.init();
 dynamicScroll.init();
